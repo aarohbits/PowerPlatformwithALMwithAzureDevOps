@@ -28,3 +28,29 @@ Publish Artifact: drop
 Path to publish: $(Build.SourcesDirectory)\$(SolutionName)\Unmanaged
 
 ```
+
+3. Command Line Snippet
+
+```
+cd $(Build.SourcesDirectory)
+
+# Set a per-project email address and username
+git config user.email "aroh.shukla@onmicrosoft.com"
+git config user.name "Aroh Shukla"
+
+# Navigate to the main branch
+git checkout -B main
+
+# Update the local version of a repository from a remote
+git pull
+
+# Add all files to the Git repository
+git add --all
+
+# Record the changes in the repository
+git commit -m "Updated the solution"
+
+# Authenticate against a git repository in a build process
+git -c http.extraheader="AUTHORIZATION: bearer $(System.AccessToken)" push origin main
+
+```
